@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo ${SUDO_UID:-$UID}
+

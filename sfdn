@@ -1,0 +1,32 @@
+#!/bin/ksh
+
+typeset src_dir=${1}
+typeset comp_dir=${2}
+typeset -i idx
+typeset -C rnp=( typeset -a md=() fn=() )
+
+if (( ${#@} != 2 )); then
+	print "usage: sfdn <source directory> <comparison directory>"
+	exit 1
+fi
+
+if [[ ! -d ${src_dir} ]] || [[ ! -d ${comp_dir} ]]; then
+	print "error: no such directory"
+	exit 1
+fi
+
+md5 -r $(find ${src_dir} -type f -print) | \
+	while read -A line; do
+	rnp.md+=( ${line[0]} )
+	rnp.fn+=( ${line[1]} )
+done
+
+find ${comp_dir} -type f -exec md5 -r {} \; | \
+	while read -A line; do
+	for (( idx = 0 ; idx < ${#rnp.md[@]} ; ++idx )); do
+		if [[ ${line[0]} == ${rnp.md[$idx]} ]]; then
+			printf "%s is the same as %s\n" ${line[1]} ${rnp.fn[$idx]};
+		fi
+	done
+done
+

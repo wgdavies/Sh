@@ -1,0 +1,21 @@
+#!/bin/ksh
+
+typeset PROGNAME=proc_check
+typeset arg=${1:-HELP}
+integer process
+
+case ${arg} in
+    HELP) print "usage: ${PROGNAME} [ command_string ]" ;;
+    *)
+        print "proc ID: $$"
+
+        for process in $(cd /proc; print [1-9][0-9]*); do
+            if [[ -r /proc/${process}/cmdline ]]; then
+                if [[ $(< /proc/${process}/cmdline) =~ ${arg} ]] && (( process != $$ )); then
+                    printf "%7d: " ${process#/proc/}
+                    print -- "$(< /proc/${process}/cmdline)"
+                fi
+            fi
+        done
+        ;;
+esac

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+pubfun() {
+	echo "$1 $2"
+}
+
+function privfun {
+	echo "$1 $2"
+}
+
+pubfun $1 $2
+pubfun a b
+pubfun a
+privfun $1 $2
+privfun a b
+privfun a
+

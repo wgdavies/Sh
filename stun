@@ -1,0 +1,42 @@
+#!/bin/ksh
+
+PATH=/bin:/usr/bin
+
+typeset PIDFILE=~/.stun.pid
+typeset STUNCMD='ssh -f -N -L 3307:lppbdsvd104:3306 lppbdsv600'
+
+case ${1} in
+     start)
+	if [[ -r ${PIDFILE} ]]; then
+	    print -u2 "stun error: SSH Tunnel process already running (or old PID file present)"
+	else
+	    printf "Starting SSH Tunnel... "
+	    ${STUNCMD}
+	    
+	    if (( ${?} == 0 )); then
+		pgrep -f ${STUNCMD} > ${PIDFILE}
+		print "done."
+	    else
+		print -u2 "error; check logs"
+	    fi
+	fi
+	;;
+    stop)
+	if [[ -r ${PIDFILE} ]]; then
+	    printf "Stopping SSH Tunnel... "
+	    pkill -F ${PIDFILE}
+
+	    if (( ${?} == 0 )); then
+		rm ${PIDFILE}
+		printf "done."
+	    else
+		print -u2 "error: unable to kill PID"
+	    fi
+	else
+	    print -u2 "stun error: unable to read PID file"
+	fi
+	;;
+    *)
+	print "usage: stun [ start | stop ]"
+	;;
+esac
