@@ -10,7 +10,7 @@ cat newpkgname.pkg/Payload | gzip -dc | cpio -i
 ls
 ```
 
-The above steps extract a PKG-formatted file into a useable file/directory structure. Installable files or directories will now be peered under the tmp/ directory. The two ls steps will show which files or directories are new and included in the Payload archive (e.g a new usr/local/ directory structure).
+The above steps extract a PKG-formatted file into a useable file/directory structure. Installable files or directories will now be peered under the `tmp/` directory. The two `ls` steps will show which files or directories are new and included in the Payload archive (e.g a new `usr/local/` directory structure).
 
 
 ## Verify Files
