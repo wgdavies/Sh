@@ -53,3 +53,4 @@ done
 
 In particular, you'll want to correct the lines containing `../../` to match your errant symlinks.
 
+> Nota Bene: all command-lines and scriptlets were executed on Korn Shell Version AJM 93u+ 2012-08-01, which ships default on macos. These examples should also work with BASH and derivatives, though has not been tested therewith. 
