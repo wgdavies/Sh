@@ -1,4 +1,7 @@
 # HOWTO: Install Non-local Packages Locally
+When you don't have local administrator access on your macos computer, or when you want to install programs that only you have direct access to, the local `~/Applications` and `~/Library` are right there waiting for you. This page shows how to take a downloaded, installable macos package that normally installs to a common filesystem location (e.g `/Applications` or `/usr/local`), extract the contents, and perform a local-only 'install'. 
+
+The one drawback to this method is that it will not register the package in the global package database (which may require administrative access, anyway). This means that you may not be able to just drag an application to the trash to remove/uninstall it, since that may not remove all the components. _Caveat emptor_. 
 
 ## TL;DR:
 ```
