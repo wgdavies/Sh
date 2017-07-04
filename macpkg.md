@@ -24,7 +24,7 @@ done | less
 ```
 
 ## [Re-]Install Files
-Binaries, &c will typically be relocated to ~/bin or ~/Applications. Simply copy or move files into place, e.g:
+Binaries, &c will typically be relocated to `~/bin` or `~/Applications`. Simply copy or move files into place, e.g:
 ```
 mv usr/local/bin/* ~/bin
 ```
