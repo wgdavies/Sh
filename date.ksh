@@ -9,8 +9,8 @@ mon=${2:-$(printf '%(%m)T')}
 day=${3:-$(printf '%(%d)T')}
 
 if (( day >= 1 )) && (( day <= 31 )) &&
-	(( mon >= 1 )) && (( mon <= 12 )) &&
-	(( yr >= 2017 )); then
+   (( mon >= 1 )) && (( mon <= 12 )) &&
+   (( yr >= 2017 )); then
 	typeset -Z4 -R4 yr
 	typeset -Z2 -R2 mon day
 	print "setting date to ${yr}-${mon}-${day}"
