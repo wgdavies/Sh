@@ -3,7 +3,7 @@
 PATH=/bin:/usr/bin
 
 typeset PIDFILE=~/.stun.pid
-typeset STUNCMD='ssh -f -N -L 3307:lppbdsvd104:3306 lppbdsv600'
+typeset STUNCMD='ssh -f -N -L 3307:host1:3306 host2'
 
 case ${1} in
      start)
